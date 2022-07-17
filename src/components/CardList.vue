@@ -26,7 +26,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+
 .list{
   margin: 0;
   padding-left: 16px;

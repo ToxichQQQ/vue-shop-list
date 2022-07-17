@@ -111,22 +111,22 @@ export default {
         return this.price
       },
       set(value){
-        const newValue = value.replace(/\s/g, '')
+        const newValue = value.replace(/\s/g, '').replace(/\D+/g, "")
         this.price =  Number(newValue).toLocaleString('ru')
       },
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
 
-<style scoped>
 .form {
-  position: fixed;
   width: 332px;
   padding: 24px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
-  border-radius: 4px;
-  background-color: #FFFEFB;
+  border-radius: $border-radius-main;
+  background-color: $bg-color
 }
 
 .input-container {
@@ -137,7 +137,7 @@ export default {
 .input-label {
   margin-bottom: 4px;
   font-size: 10px;
-  font-weight: 400;
+  font-weight: $weight-main;
   display: block;
 }
 
@@ -147,14 +147,14 @@ export default {
   padding: 10px 0 10px 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
-  border-radius: 4px;
+  border-radius:  $border-radius-main;
   font-size: 12px;
-  color: #3F3F3F;
+  color: $text-color;
   font-family: 'Source Sans Pro', Avenir, Helvetica, Arial, sans-serif;
 }
 
 .input[aria-placeholder] {
-  color: #B4B4B4;
+  color: $placeholder-color;
 }
 
 .input:focus-visible {
@@ -178,29 +178,34 @@ export default {
 .form-button {
   width: 100%;
   padding: 10px 0;
-  border-radius: 10px;
-  background-color: #0059ff;
-  color: #EEE;
+  border-radius:  $border-radius-button;
+  background-color: $button-bg;
+  color: $button-text;
   border: none;
   cursor: pointer;
   transition: background-color, color 100ms ease;
 }
 
 .form-button:disabled {
-  background-color: #EEE;
-  color: #B4B4B4;
+  background-color: $button-disabled-bg;
+  color: $button-disabled-text;
 }
 .error{
-  outline: 1px solid #FF8484;
+  outline: 1px solid $error-color;
 }
 .mark{
-  color: #FF8484;
+  color: $error-color;
 }
 .error-text{
-  color: #FF8484;
+  color:  $error-color;
   font-size: 8px;
   position: absolute;
   margin: 4px 0 0;
-
 }
+@media (min-width: 1390px) {
+  .form{
+    position: fixed;
+  }
+}
+
 </style>

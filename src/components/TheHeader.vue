@@ -21,7 +21,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -32,16 +34,16 @@ export default {
 .header-title {
   margin: 0;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: $weight-semi-bold;
 }
 
 .header-filter {
   padding: 10px 16px;
-  color: #B4B4B4;
+  color: $header-text;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: $weight-main;
   border: none;
-  border-radius: 4px;
+  border-radius: $border-radius-main;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 

@@ -1,7 +1,7 @@
 <template>
   <li class="item-container" @mouseover="mouseOver" @mouseleave="mouseLeave">
     <button class="delete-button" v-show="isActive" @click="deleteItem">
-      <img src="../assets/delete.svg" alt="Delete Icon"/>
+      <img src="../../public/images/delete.svg" alt="Delete Icon"/>
     </button>
     <img class="item-img" :src="item.link" alt="item_img"/>
     <div class="item-info">
@@ -37,15 +37,18 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "src/assets/variables.scss";
+
 .item-container {
   cursor: pointer;
   position: relative;
-  background-color: #FFFEFB;
-  border-radius: 4px;
+  background-color:  $bg-color;
+  border-radius:  $border-radius-main;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
   margin: 0 16px 16px 0;
   flex: 0 1 347px;
+  min-height: 423px;
   transition: all 1s ease;
 }
 
@@ -58,16 +61,17 @@ export default {
 }
 
 .delete-button{
-  background-color: #FF8484;
+  background-color: $error-color;
   border: none;
-  border-radius: 10px;
+  border-radius:  $border-radius-button;
   padding: 8px 10px;
   position: absolute;
   right: 0;
   top: -9px;
 }
 .item-img {
-  border-radius: 4px 4px 0 0;
+  border-top-right-radius:  $border-radius-main;
+  border-top-left-radius:  $border-radius-main;
   width: 100%;
   max-height: 190px;
 }
@@ -82,24 +86,27 @@ export default {
   margin: 0;
 
   font-size: 20px;
-  font-weight: 600;
+  font-weight: $weight-semi-bold;
 }
 
 .item-description {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: $weight-main;
   line-height: 20px;
 
 }
 
 .item-price {
+  margin: 0;
+  position: absolute;
+  bottom: 24px;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: $weight-semi-bold;
 }
 
 @media (max-width: 680px) {
   .item-container {
-    flex: 0 1 auto;
+    flex: 0 1 332px;
     margin: 10px 0 0;
   }
 }
