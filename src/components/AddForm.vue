@@ -1,30 +1,59 @@
 <template>
   <form @submit.prevent="addNewItem" class="form">
     <div class="input-container">
-      <label class="input-label" for="item_name">Наименование товара<span class="mark">*</span></label>
-      <input v-model="name" class="input" id="item_name" placeholder="Введите наименование товара"
-             :class="{error: isValidName}"/>
+      <label class="input-label" for="item_name"
+        >Наименование товара<span class="mark">*</span></label
+      >
+      <input
+        v-model="name"
+        class="input"
+        id="item_name"
+        placeholder="Введите наименование товара"
+        :class="{ error: isValidName }"
+      />
       <p v-if="isValidName" class="error-text">Поле обязательно для ввода</p>
     </div>
     <div class="input-container">
       <label class="input-label" for="item_description">Описание товара</label>
-      <textarea v-model="description" class="input textarea" id="item_description"
-                placeholder="Введите описание товара"></textarea>
+      <textarea
+        v-model="description"
+        class="input textarea"
+        id="item_description"
+        placeholder="Введите описание товара"
+      ></textarea>
     </div>
 
     <div class="input-container">
-      <label class="input-label" for="item_link">Ссылка на изображение товара<span class="mark">*</span></label>
-      <input v-model="link" class="input" id="item_link" placeholder="Введите ссылку"   :class="{error: isValidLink}"/>
+      <label class="input-label" for="item_link"
+        >Ссылка на изображение товара<span class="mark">*</span></label
+      >
+      <input
+        v-model="link"
+        class="input"
+        id="item_link"
+        placeholder="Введите ссылку"
+        :class="{ error: isValidLink }"
+      />
       <p v-if="isValidLink" class="error-text">Поле обязательно для ввода</p>
     </div>
 
     <div class="input-container">
-      <label class="input-label" for="item_price">Цена товара<span class="mark">*</span></label>
-      <input v-model="formattedPrice" class="input" id="item_price" placeholder="Введите цену"   :class="{error: isValidPrice}"/>
+      <label class="input-label" for="item_price"
+        >Цена товара<span class="mark">*</span></label
+      >
+      <input
+        v-model="formattedPrice"
+        class="input"
+        id="item_price"
+        placeholder="Введите цену"
+        :class="{ error: isValidPrice }"
+      />
       <p v-if="isValidPrice" class="error-text">Поле обязательно для ввода</p>
     </div>
     <div class="button-container">
-      <button :disabled="isDisabledButton" class="form-button" type="submit">Добавить товар</button>
+      <button :disabled="isDisabledButton" class="form-button" type="submit">
+        Добавить товар
+      </button>
     </div>
   </form>
 </template>
@@ -35,11 +64,11 @@ export default {
   data() {
     return {
       errors: [],
-      name: '',
-      description: '',
-      link: '',
-      price: ''
-    }
+      name: "",
+      description: "",
+      link: "",
+      price: "",
+    };
   },
   methods: {
     addNewItem() {
@@ -48,75 +77,72 @@ export default {
         name: this.name,
         description: this.description,
         link: this.link,
-        price: this.price
-      }
-      this.$emit('add-new-item', newItem)
+        price: this.price,
+      };
+      this.$emit("add-new-item", newItem);
 
-      this.name = ''
-      this.description = ''
-      this.link = ''
-      this.price = ''
-
+      this.name = "";
+      this.description = "";
+      this.link = "";
+      this.price = "";
     },
     checkValidForm() {
-
-      this.errors = []
+      this.errors = [];
 
       if (this.name && this.link && this.price) {
-        return false
+        return false;
       }
 
-
       if (!this.name) {
-        this.errors = [...this.errors, 'name']
+        this.errors = [...this.errors, "name"];
       }
 
       if (!this.price) {
-        this.errors = [...this.errors, 'price']
+        this.errors = [...this.errors, "price"];
       }
 
       if (!this.link) {
-        this.errors = [...this.errors, 'link']
+        this.errors = [...this.errors, "link"];
       }
 
-      return true
-    }
+      return true;
+    },
   },
   watch: {
-    name () {
-      this.checkValidForm()
+    name() {
+      this.checkValidForm();
     },
-    link () {
-      this.checkValidForm()
+    link() {
+      this.checkValidForm();
     },
-    price () {
-      this.checkValidForm()
+    price() {
+      this.checkValidForm();
     },
   },
   computed: {
     isValidName() {
-      return this.errors.find(item => item === 'name')
+      return this.errors.find((item) => item === "name");
     },
-    isValidLink () {
-      return this.errors.find(item => item === 'link')
+    isValidLink() {
+      return this.errors.find((item) => item === "link");
     },
-    isValidPrice () {
-      return this.errors.find(item => item === 'price')
+    isValidPrice() {
+      return this.errors.find((item) => item === "price");
     },
-    isDisabledButton () {
-      return !(this.name && this.price && this.link)
+    isDisabledButton() {
+      return !(this.name && this.price && this.link);
     },
-    formattedPrice:{
-      get(){
-        return this.price
+    formattedPrice: {
+      get() {
+        return this.price;
       },
-      set(value){
-        const newValue = value.replace(/\s/g, '').replace(/\D+/g, "")
-        this.price =  Number(newValue).toLocaleString('ru')
+      set(value) {
+        const newValue = value.replace(/\s/g, "").replace(/\D+/g, "");
+        this.price = Number(newValue).toLocaleString("ru");
       },
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
@@ -126,7 +152,7 @@ export default {
   padding: 24px;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
   border-radius: $border-radius-main;
-  background-color: $bg-color
+  background-color: $bg-color;
 }
 
 .input-container {
@@ -147,10 +173,10 @@ export default {
   padding: 10px 0 10px 16px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: none;
-  border-radius:  $border-radius-main;
+  border-radius: $border-radius-main;
   font-size: 12px;
   color: $text-color;
-  font-family: 'Source Sans Pro', Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Source Sans Pro", Avenir, Helvetica, Arial, sans-serif;
 }
 
 .input[aria-placeholder] {
@@ -178,7 +204,7 @@ export default {
 .form-button {
   width: 100%;
   padding: 10px 0;
-  border-radius:  $border-radius-button;
+  border-radius: $border-radius-button;
   background-color: $button-bg;
   color: $button-text;
   border: none;
@@ -190,22 +216,21 @@ export default {
   background-color: $button-disabled-bg;
   color: $button-disabled-text;
 }
-.error{
+.error {
   outline: 1px solid $error-color;
 }
-.mark{
+.mark {
   color: $error-color;
 }
-.error-text{
-  color:  $error-color;
+.error-text {
+  color: $error-color;
   font-size: 8px;
   position: absolute;
   margin: 4px 0 0;
 }
 @media (min-width: 1390px) {
-  .form{
+  .form {
     position: fixed;
   }
 }
-
 </style>

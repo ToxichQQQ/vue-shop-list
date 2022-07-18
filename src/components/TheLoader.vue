@@ -1,19 +1,28 @@
 <template>
   <div class="loader-container">
-    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    <div class="lds-roller">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "TheLoader"
-}
+  name: "TheLoader",
+};
 </script>
 
 <style scoped>
-.loader-container{
+.loader-container {
   position: absolute;
-  top:40%;
+  top: 40%;
   right: 30%;
 }
 .lds-roller {
@@ -100,5 +109,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>

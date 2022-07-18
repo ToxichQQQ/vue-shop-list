@@ -1,9 +1,9 @@
 <template>
   <li class="item-container" @mouseover="mouseOver" @mouseleave="mouseLeave">
     <button class="delete-button" v-show="isActive" @click="deleteItem">
-      <img src="../../public/images/delete.svg" alt="Delete Icon"/>
+      <img src="../../public/images/delete.svg" alt="Delete Icon" />
     </button>
-    <img class="item-img" :src="item.link" alt="item_img"/>
+    <img class="item-img" :src="item.link" alt="item_img" />
     <div class="item-info">
       <h3 class="item-header">{{ item.name }}</h3>
       <p class="item-description">{{ item.description }}</p>
@@ -16,25 +16,25 @@
 export default {
   name: "ListItem",
   props: {
-    item: Object
+    item: Object,
   },
-  data(){
-    return{
-      isActive:false
-    }
+  data() {
+    return {
+      isActive: false,
+    };
   },
-  methods:{
-    mouseOver: function (){
-      this.isActive = true
+  methods: {
+    mouseOver: function () {
+      this.isActive = true;
     },
-    mouseLeave: function (){
-      this.isActive = false
+    mouseLeave: function () {
+      this.isActive = false;
     },
-    deleteItem: function (){
-      this.$emit('delete-item',this.item.id)
-    }
-  }
-}
+    deleteItem: function () {
+      this.$emit("delete-item", this.item.id);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -43,8 +43,8 @@ export default {
 .item-container {
   cursor: pointer;
   position: relative;
-  background-color:  $bg-color;
-  border-radius:  $border-radius-main;
+  background-color: $bg-color;
+  border-radius: $border-radius-main;
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
   margin: 0 16px 16px 0;
   flex: 0 1 347px;
@@ -60,26 +60,26 @@ export default {
   margin-right: 0;
 }
 
-.delete-button{
+.delete-button {
   background-color: $error-color;
   border: none;
-  border-radius:  $border-radius-button;
+  border-radius: $border-radius-button;
   padding: 8px 10px;
   position: absolute;
   right: 0;
   top: -9px;
 }
 .item-img {
-  border-top-right-radius:  $border-radius-main;
-  border-top-left-radius:  $border-radius-main;
+  border-top-right-radius: $border-radius-main;
+  border-top-left-radius: $border-radius-main;
   width: 100%;
   max-height: 190px;
 }
 
 .item-info {
   padding: 12px 16px 16px;
-  color: #3F3F3F;
-  font-family: 'Source Sans Pro', Avenir, Helvetica, Arial, sans-serif;
+  color: #3f3f3f;
+  font-family: "Source Sans Pro", Avenir, Helvetica, Arial, sans-serif;
 }
 
 .item-header {
@@ -93,7 +93,6 @@ export default {
   font-size: 16px;
   font-weight: $weight-main;
   line-height: 20px;
-
 }
 
 .item-price {

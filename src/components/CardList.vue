@@ -1,8 +1,13 @@
 <template>
   <ul class="list">
     <transition-group name="list">
-      <TheLoader v-if="loading"/>
-      <ListItem v-for="item in items" :key="item.id" :item="item" @delete-item="deleteItem"/>
+      <TheLoader v-if="loading" />
+      <ListItem
+        v-for="item in items"
+        :key="item.id"
+        :item="item"
+        @delete-item="deleteItem"
+      />
     </transition-group>
   </ul>
 </template>
@@ -13,23 +18,23 @@ import TheLoader from "@/components/TheLoader";
 
 export default {
   name: "CardList",
-  components: {TheLoader, ListItem},
-  props:{
-    items:Array,
-    loading:Boolean
+  components: { TheLoader, ListItem },
+  props: {
+    items: Array,
+    loading: Boolean,
   },
-  methods:{
-    deleteItem(id){
-      this.$emit('delete-item',id)
-    }
-  }
-}
+  methods: {
+    deleteItem(id) {
+      this.$emit("delete-item", id);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 @import "src/assets/variables.scss";
 
-.list{
+.list {
   margin: 0;
   padding-left: 16px;
   list-style-type: none;
@@ -49,7 +54,7 @@ export default {
 
 @media (max-width: 680px) {
   .list {
-    padding-left: 0
+    padding-left: 0;
   }
 }
 </style>

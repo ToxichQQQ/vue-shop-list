@@ -4,7 +4,7 @@
     <select class="header-filter" @change="setFilter">
       <option value="default">По умолчанию</option>
       <option value="min">По цене min</option>
-      <option value="max"> По цене max</option>
+      <option value="max">По цене max</option>
       <option value="name">По наименованию</option>
     </select>
   </header>
@@ -13,12 +13,12 @@
 <script>
 export default {
   name: "TheHeader",
-  methods:{
-    setFilter(event){
-      this.$emit('set-filter',event.target.value)
-    }
-  }
-}
+  methods: {
+    setFilter(event) {
+      this.$emit("set-filter", event.target.value);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
